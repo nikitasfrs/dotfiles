@@ -195,9 +195,13 @@ let g:syntastic_javascript_checkers = ['eslint']
 "autocmd BufNewFile,BufRead *.jsx set filetype=jsx
 "let g:syntastic_disabled_filetypes=['jsx']
 "
-" enable syntax highlighting for .es6 files
+" enable syntax highlighting for .es6, .nunj files
+"au BufRead,BufNewFile *.nunj setfiletype jinja
+au BufRead,BufNewFile *.nunj set filetype=jinja
 autocmd BufNewFile,BufRead *.es6 let b:es6_ext_found = 1
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript.es6
+autocmd BufNewFile,BufRead *.hyper set filetype=javascript.es6
+"autocmd BufNewFile,BufRead *.jinja2,*.j2,*.jinja set ft=jinja 
 
 " show any linting errors immediately
 let g:syntastic_check_on_open = 1
