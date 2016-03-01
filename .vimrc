@@ -16,7 +16,7 @@
 " vim-addon-mw-utils
 " vim-airline
 " vim-colors-solarized
-" vim-jinja
+" Vim-Jinja2-Syntax
 " vim-jsdoc
 " vim-lucius
 " vim-mercenary
