@@ -1,0 +1,10 @@
+*.min*
+*-min*
+*_min*
+*.min.*
+bundle
+min
+vendor
+node_modules
+tags
+cscope.*
