@@ -14,6 +14,7 @@
 " tlib_vim
 " unite.vim
 " vim-addon-mw-utils
+" vim-rooter
 " vim-airline
 " vim-colors-solarized
 " Vim-Jinja2-Syntax
@@ -40,9 +41,10 @@ set expandtab
 set number
 syntax enable
 
+"let g:solarized_termcolors = 256 
+
 " --- LUCIOUS COLOR SCHEME SETTINGS ---
 "set background=dark
-"let g:solarized_termcolors = 256 
 "colorscheme solarized
 "colorscheme Lucius
 "LuciusDarkLowContrast
@@ -51,6 +53,7 @@ syntax enable
 " --- SOLARIZED COLOR SCHEME SETTINGS ---
 "let g:solarized_termtrans = 1
 set background=dark
+"set background=light
 colorscheme solarized
 
 
@@ -212,9 +215,37 @@ let g:syntastic_check_on_open = 1
 "smap <C-J> <Plug>snipMateNextOrTrigger<cr>
 
 " Auto change the directory to the current file I'm working on
-autocmd BufEnter * lcd %:p:h 
-
-let g:ag_working_path_mode="r"
+"autocmd BufEnter * lcd %:p:h 
+"
+" vim-rooter config
+" -----------------
+autocmd BufEnter * :Rooter
+" 
+" uncomment the following to use <Leader>cd to invoke vim 
+" rooter only
+"let g:rooter_manual_only = 1
 
 " incsearch
 set incsearch
+
+" The Silver Searcher
+"let g:ag_prg="<path> --vimgrep"
+"let g:ag_working_path_mode="r"
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+
+endif
+"nnoremap L :Ag<SPACE>
+

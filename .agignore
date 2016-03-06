@@ -2,9 +2,14 @@
 *-min*
 *_min*
 *.min.*
+public
+assets
+nioweb
 bundle
 min
 vendor
+bower_components
+highchartsdemo_v2
 node_modules
 tags
 cscope.*
