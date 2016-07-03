@@ -23,20 +23,26 @@
 " vim-mercenary
 " vim-snipmate
 " vim-tmux-navigator
+" vim-flow
 
 set nocompatible
 
 execute pathogen#infect()
 filetype plugin indent on
 
+" SOFT TABS
 " show existing tab with 4 spaces width
-set tabstop=4
+"set tabstop=4
 
 " when indenting with '>' use 4 spaces width
-set shiftwidth=4
+"set shiftwidth=4
 
 " on pressing tab insert 4 spaces
-set expandtab
+"set expandtab
+"
+" HARD TABS
+set shiftwidth=4
+set tabstop=4
 
 set number
 syntax enable
@@ -84,9 +90,9 @@ nnoremap <leader>x :x<cr>
 nnoremap <leader>X :q!<cr>
 
 " map C-S to save in any mode
-noremap <silent> <C-S>      :update<CR>
-vnoremap <silent> <C-S>     <C-C>:update<CR>
-inoremap <silent> <C-S>     <C-O>:update<CR>
+"noremap <silent> <C-S>      :update<CR>
+"vnoremap <silent> <C-S>     <C-C>:update<CR>
+"inoremap <silent> <C-S>     <C-O>:update<CR>
 
 " <leader> + S to save in any mode
 map <leader>s <C-S>
@@ -150,7 +156,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 "niometrics path
-set path=~/niometrics/nio-products/v2/**
+"set path=~/niometrics/nio-products/v2/**
+set path=~/niometrics/nio-products/v2
 
 "place .swp files in separate directory
 set backupdir=~/.vim/backup//
@@ -189,6 +196,16 @@ set clipboard=unnamed
 " beautify json shortcut
 nmap <leader>jj :%!python -m json.tool<cr>
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+"let g:syntastic_enable_signs = 1
+
 " use jshint
 let g:syntastic_javascript_checkers = ['eslint']
 " JS syntax checking with JSX support
@@ -198,16 +215,17 @@ let g:syntastic_javascript_checkers = ['eslint']
 "autocmd BufNewFile,BufRead *.jsx set filetype=jsx
 "let g:syntastic_disabled_filetypes=['jsx']
 "
-" enable syntax highlighting for .es6, .nunj files
+" enable syntax highlighting for .es6, .swig, .nunj files
 "au BufRead,BufNewFile *.nunj setfiletype jinja
 au BufRead,BufNewFile *.nunj set filetype=jinja
+au BufRead,BufNewFile *.swig set filetype=jinja
 autocmd BufNewFile,BufRead *.es6 let b:es6_ext_found = 1
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript.es6
 autocmd BufNewFile,BufRead *.hyper set filetype=javascript.es6
 "autocmd BufNewFile,BufRead *.jinja2,*.j2,*.jinja set ft=jinja 
 
 " show any linting errors immediately
-let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_open = 1
 
 " snipmate config
 " using Ctrl+J
@@ -248,4 +266,14 @@ if executable('ag')
 
 endif
 "nnoremap L :Ag<SPACE>
+"
+"FLOW plugin config
+" disable (temporary)
+let g:flow#enable = 0
 
+" Use CTRL-S for saving, also in Insert mode
+" note: this requires to include stty -ixon into
+" your .zshrc or .bashrc to work
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
