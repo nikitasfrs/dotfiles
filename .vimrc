@@ -16,6 +16,7 @@
 " vim-addon-mw-utils
 " vim-rooter
 " vim-airline
+" vim-airline-themes
 " vim-colors-solarized
 " Vim-Jinja2-Syntax
 " vim-jsdoc
@@ -24,6 +25,13 @@
 " vim-snipmate
 " vim-tmux-navigator
 " vim-flow
+" vim-easymotion
+" vim-surround
+" auto-pairs
+" indentLine
+" emmet-vim
+"
+
 
 set nocompatible
 
@@ -51,7 +59,7 @@ syntax enable
 
 " --- LUCIOUS COLOR SCHEME SETTINGS ---
 "set background=dark
-"colorscheme solarized
+colorscheme solarized
 "colorscheme Lucius
 "LuciusDarkLowContrast
 "LuciusDarkHighContrast
@@ -60,7 +68,6 @@ syntax enable
 "let g:solarized_termtrans = 1
 set background=dark
 "set background=light
-colorscheme solarized
 
 
 " buffer management
@@ -151,11 +158,13 @@ noremap <leader>= :wincmd =<cr>
 " airline setup
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-
-" Show just the filename
+"Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-"niometrics path
+" solarized for airline
+let g:airline_theme = 'solarized'
+
+"path
 "set path=~/niometrics/nio-products/v2/**
 set path=~/niometrics/nio-products/v2
 
@@ -277,3 +286,55 @@ let g:flow#enable = 0
 noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
+
+
+" tests
+"let g:solarized_bold = 0
+"let g:solarized_contrast = "low"
+"let g:solarized_termcolors = 256
+"colorscheme solarized
+set cursorline
+"set cursorcolumn
+"hi CursorLine cterm=NONE ctermbg=117 ctermfg=NONE guibg=darkred guifg=white
+"hi CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=darkred guifg=white
+"
+"
+
+" Relative line numbers
+set number
+set relativenumber
+
+" Edit .vimrc with <Leader>ev
+nmap <Leader>ev :e $MYVIMRC<cr>
+
+
+" Automaticall source .vimrc after edit
+augroup autosourcing
+    autocmd!
+    autocmd BufWritePost .vimrc source %
+augroup END
+
+" Show linebreaks more clearly
+set breakindent
+set formatoptions=l
+set lbr
+set showbreak=**\ \
+
+" Jump to the end of the line
+inoremap ii <Esc>$a
+
+" Leave insert mode quickly
+inoremap jk <Esc>
+
+" Remap ; to :
+nnoremap ; :
+
+let g:indentLine_char = '|'
+
+" NOTES
+" --------------------
+" Edit .vimrc file \ev
+" 
+" Change the surrounding chars
+"     cs (change surrounding) <old char> <new char>
+"
