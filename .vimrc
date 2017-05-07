@@ -329,7 +329,9 @@ inoremap jk <Esc>
 " Remap ; to :
 nnoremap ; :
 
-let g:indentLine_char = '|'
+" Emmet configs
+" Apply JSX expansions when in javascript filetype
+let g:user_emmet_settings={'javascript': {'extends':'jsx'}}
 
 " NOTES
 " --------------------
@@ -338,3 +340,8 @@ let g:indentLine_char = '|'
 " Change the surrounding chars
 "     cs (change surrounding) <old char> <new char>
 "
+" Easymotion example
+" <Leader><Leader>w
+" <Leader><Leader>fo (when looking for an 'o')
+"
+" Default emmet key <C-y> 
